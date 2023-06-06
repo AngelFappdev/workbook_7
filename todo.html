@@ -1,0 +1,29 @@
+<body>
+    <a href = "index.html">Home!</a>
+    <input id = "todo_id">
+    <button id="go">Go!</button>
+    <div id="message"></div>
+</body>
+
+<script>
+    //Modern Version
+    async function getToDo1(id){
+        id = todo_id.value;
+        let response = await fetch("https://jsonplaceholder.typicode.com/todos/"+id)
+        const data = await response.json();
+        message.innerHTML = data.title;
+    
+    };
+    //Promises 
+    async function getToDo2(id){
+        fetch("https://jsonplaceholder.typicode.com/todos/"+id)
+        .then (response => response.json())
+        .then (data =>{
+            message.innerHTML = data.title
+        });
+
+    }
+    go.addEventListener("click",async ()=>{
+        getToDo1(todo_id.value);
+    });
+</script>
